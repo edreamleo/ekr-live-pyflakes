@@ -123,12 +123,12 @@
 <v t="ekr.20251125025721.51"><vh>class DetectClassScopedMagic(Scope)</vh></v>
 </v>
 <v t="ekr.20251125025721.52"><vh>function: getNodeName</vh></v>
-<v t="ekr.20251125030727.1"><vh>--- Annotations</vh>
+<v t="ekr.20251125030727.1"><vh>--- Annotations (checker.py)</vh>
 <v t="ekr.20251125025721.53"><vh>function: _is_typing_helper</vh></v>
 <v t="ekr.20251125025721.54"><vh>function: _is_typing</vh></v>
 <v t="ekr.20251125025721.55"><vh>function: _is_any_typing_member</vh></v>
 <v t="ekr.20251125025721.56"><vh>function: is_typing_overload</vh></v>
-<v t="ekr.20251125025721.57"><vh>class AnnotationState</vh></v>
+<v t="ekr.20251125025721.57"><vh>class AnnotationState (added repr)</vh></v>
 <v t="ekr.20251125025721.58"><vh>function: in_annotation</vh></v>
 <v t="ekr.20251125025721.59"><vh>function: in_string_annotation</vh></v>
 </v>
@@ -1040,7 +1040,10 @@
 <v t="ekr.20251125110241.1"><vh>@button test-pyflakes</vh>
 <v t="ekr.20251125112702.1"><vh>&lt;&lt; define test &gt;&gt;</vh></v>
 <v t="ekr.20251126060205.1"><vh>ATTRIBUTE</vh></v>
+<v t="ekr.20251127091133.1"><vh>repr_AnnotationState</vh></v>
 </v>
+<v t="ekr.20251126060205.1"></v>
+<v t="ekr.20251125025721.57"></v>
 </vnodes>
 <tnodes>
 <t tx="ekr.20251125025221.1"></t>
@@ -2207,7 +2210,7 @@ def JOINEDSTR(self, node):
         self._in_fstring = orig
 
 </t>
-<t tx="ekr.20251125025721.14" _mod_time="4741da4a12fd4215342e">"""
+<t tx="ekr.20251125025721.14" _mod_time="4741da4a1abfd67d032e">"""
 Main module.
 
 Implement the central Checker class.
@@ -2227,7 +2230,7 @@ import string
 import sys
 import warnings
 
-from pyflakes import ekr, trace  ###
+from pyflakes import trace  ###
 from pyflakes import messages
 
 PYPY = hasattr(sys, 'pypy_version_info')
@@ -11923,14 +11926,14 @@ from pyflakes.checker import Checker
 &lt;&lt; define test &gt;&gt;
 @others
 
-g.funcToMethod(ATTRIBUTE, Checker, 'ATTRIBUTE')
+g.funcToMethod(ATTRIBUTE, Checker)  #, 'ATTRIBUTE')
+g.funcToMethod(repr_AnnotationState, Checker)
 
 try:
-    pyflakes.ekr = True
     pyflakes.trace = True
     check(test, filename='pyflakes_test.py')
 finally:
-    pyflakes.ekr = pyflakes.trace = False
+    pyflakes.trace = False
 </t>
 <t tx="ekr.20251125112702.1"># The #@ comments are markers for mypy.
 
@@ -11982,9 +11985,11 @@ print(val)
 <t tx="ekr.20251126060205.1">def ATTRIBUTE(self, node) -&gt; None:
     if isinstance(node.value, ast.Name):
         if pyflakes.trace:
+            a = self._in_annotation
             g.trace(
-                f"{node.ctx.__class__.__name__}"
-                f"{node.value.id}.{node.attr}"
+                f"{self.repr_AnnotationState(a)}"
+                f"{node.ctx.__class__.__name__} "
+                f"{node.value.id}.{node.attr} "
             )
     self.handleChildren(node)
 </t>
@@ -12055,5 +12060,9 @@ To study:
 # found 3 nodes</t>
 <t tx="ekr.20251127060416.1"></t>
 <t tx="ekr.20251127061705.1"></t>
+<t tx="ekr.20251127091133.1">def repr_AnnotationState(self, a: int) -&gt; str:
+    s = 'none' if self == 0 else 'string' if self == 1 else 'bare'
+    return f"AnnotationState: {s}"
+</t>
 </tnodes>
 </leo_file>
