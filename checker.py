@@ -1536,10 +1536,10 @@ class Checker:
 
     def CALL(self, node):
         if (
-                isinstance(node.func, ast.Attribute) and
-                isinstance(node.func.value, ast.Constant) and
-                isinstance(node.func.value.value, str) and
-                node.func.attr == 'format'
+            isinstance(node.func, ast.Attribute) and
+            isinstance(node.func.value, ast.Constant) and
+            isinstance(node.func.value.value, str) and
+            node.func.attr == 'format'
         ):
             self._handle_string_dot_format(node)
 
