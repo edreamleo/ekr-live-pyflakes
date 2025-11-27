@@ -31,25 +31,27 @@
 <v t="ekr.20251125025721.13"><vh>function: main</vh></v>
 </v>
 <v t="ekr.20251125025721.14"><vh>@clean checker.py</vh>
-<v t="ekr.20251125025721.15"><vh>function: getAlternatives</vh></v>
 <v t="ekr.20251125030421.1"><vh>--- node predicates</vh>
+<v t="ekr.20251125025721.15"><vh>function: getAlternatives</vh></v>
 <v t="ekr.20251125025721.16"><vh>function: _is_singleton</vh></v>
 <v t="ekr.20251125025721.17"><vh>function: _is_tuple_constant</vh></v>
 <v t="ekr.20251125025721.18"><vh>function: _is_constant</vh></v>
 <v t="ekr.20251125025721.19"><vh>function: _is_const_non_singleton</vh></v>
 <v t="ekr.20251125025721.20"><vh>function: _is_name_or_attr</vh></v>
 </v>
+<v t="ekr.20251127143301.1"><vh>--- patterns</vh>
 <v t="ekr.20251125025721.21"><vh>function: _must_match</vh></v>
 <v t="ekr.20251125025721.22"><vh>function: parse_percent_format</vh></v>
+</v>
 <v t="ekr.20251125030441.1"><vh>--- traversal</vh>
 <v t="ekr.20251125025721.23"><vh>class _FieldsOrder</vh>
 <v t="ekr.20251125025721.61"><vh>_FieldsOrder._get_fields</vh></v>
 <v t="ekr.20251125025721.62"><vh>_FieldsOrder.__missing__</vh></v>
 </v>
 <v t="ekr.20251125025721.24"><vh>function: iter_child_nodes</vh></v>
-</v>
 <v t="ekr.20251125025721.25"><vh>function: convert_to_value</vh></v>
 <v t="ekr.20251125025721.26"><vh>function: is_notimplemented_name_node</vh></v>
+</v>
 <v t="ekr.20251125030522.1"><vh>--- Binding &amp; Definition classes</vh>
 <v t="ekr.20251125025721.27"><vh>class Binding</vh>
 <v t="ekr.20251125025721.63"><vh>Binding.__init__</vh></v>
@@ -121,14 +123,14 @@
 <v t="ekr.20251125025721.49"><vh>class ModuleScope(Scope)</vh></v>
 <v t="ekr.20251125025721.50"><vh>class DoctestScope(Scope)</vh></v>
 <v t="ekr.20251125025721.51"><vh>class DetectClassScopedMagic(Scope)</vh></v>
-</v>
 <v t="ekr.20251125025721.52"><vh>function: getNodeName</vh></v>
-<v t="ekr.20251125030727.1"><vh>--- Annotations (checker.py)</vh>
+</v>
+<v t="ekr.20251125030727.1"><vh>--- Annotations</vh>
 <v t="ekr.20251125025721.53"><vh>function: _is_typing_helper</vh></v>
 <v t="ekr.20251125025721.54"><vh>function: _is_typing</vh></v>
 <v t="ekr.20251125025721.55"><vh>function: _is_any_typing_member</vh></v>
 <v t="ekr.20251125025721.56"><vh>function: is_typing_overload</vh></v>
-<v t="ekr.20251125025721.57"><vh>class AnnotationState (added repr)</vh></v>
+<v t="ekr.20251125025721.57"><vh>class AnnotationState</vh></v>
 <v t="ekr.20251125025721.58"><vh>function: in_annotation</vh></v>
 <v t="ekr.20251125025721.59"><vh>function: in_string_annotation</vh></v>
 </v>
@@ -1004,12 +1006,12 @@
 <v t="ekr.20251127052742.1"><vh>--- classes</vh>
 <v t="ekr.20251125025721.60"></v>
 </v>
+<v t="ekr.20251125025721.14"></v>
+<v t="ekr.20251125030727.1"></v>
 <v t="ekr.20251127052946.1"><vh>--- ref</vh>
 <v t="ekr.20251125025721.146"></v>
 <v t="ekr.20251125025721.6"></v>
 </v>
-<v t="ekr.20251125025721.14"></v>
-<v t="ekr.20251125030727.1"></v>
 <v t="ekr.20251127053202.1"><vh>====== study</vh>
 <v t="ekr.20251125031033.1"></v>
 <v t="ekr.20251127055618.1"><vh>--- functools.partial: defer calls to handleStringAnnotation</vh>
@@ -1042,8 +1044,6 @@
 <v t="ekr.20251126060205.1"><vh>ATTRIBUTE</vh></v>
 <v t="ekr.20251127091133.1"><vh>repr_AnnotationState</vh></v>
 </v>
-<v t="ekr.20251126060205.1"></v>
-<v t="ekr.20251125025721.57"></v>
 </vnodes>
 <tnodes>
 <t tx="ekr.20251125025221.1"></t>
@@ -11925,10 +11925,6 @@ from pyflakes.checker import Checker
 
 &lt;&lt; define test &gt;&gt;
 @others
-
-g.funcToMethod(ATTRIBUTE, Checker)  #, 'ATTRIBUTE')
-g.funcToMethod(repr_AnnotationState, Checker)
-
 try:
     pyflakes.trace = True
     check(test, filename='pyflakes_test.py')
@@ -11992,6 +11988,8 @@ print(val)
                 f"{node.value.id}.{node.attr} "
             )
     self.handleChildren(node)
+
+g.funcToMethod(ATTRIBUTE, Checker)  #, 'ATTRIBUTE')
 </t>
 <t tx="ekr.20251126114704.1">"""A plugin for pyflakes that improves testing of ast.ATTRIBUTE nodes."""
 
@@ -12063,6 +12061,8 @@ To study:
 <t tx="ekr.20251127091133.1">def repr_AnnotationState(self, a: int) -&gt; str:
     s = 'none' if self == 0 else 'string' if self == 1 else 'bare'
     return f"AnnotationState: {s}"
-</t>
+
+g.funcToMethod(repr_AnnotationState, Checker)</t>
+<t tx="ekr.20251127143301.1"></t>
 </tnodes>
 </leo_file>
