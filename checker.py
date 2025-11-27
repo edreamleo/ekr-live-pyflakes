@@ -18,6 +18,7 @@ import string
 import sys
 import warnings
 
+from pyflakes import ekr, trace  ###
 from pyflakes import messages
 
 PYPY = hasattr(sys, 'pypy_version_info')
@@ -701,6 +702,7 @@ def in_annotation(func):
 
 
 def in_string_annotation(func):
+    ### Execute func with _in_annotation = AnnotationState.STRING
     @functools.wraps(func)
     def in_annotation_func(self, *args, **kwargs):
         with self._enter_annotation(AnnotationState.STRING):
@@ -746,8 +748,6 @@ class Checker:
         self.exceptHandlers = [()]
         self.root = tree
         self.scopeStack = []
-
-        self.load_plugins()
 
         try:
             scope_tp = Checker._ast_node_scope[type(tree)]
@@ -1208,6 +1208,14 @@ class Checker:
 
     @contextlib.contextmanager
     def _enter_annotation(self, ann_type=AnnotationState.BARE):
+
+        ###
+        # Execute code with _in_annotation with given annotation state, default BARE.
+
+        # Always used as follows:
+        # with self._enter_annotation(...):
+        #    self.handleNode(node) or self.handleChildren(node), etc.
+
         orig, self._in_annotation = self._in_annotation, ann_type
         try:
             yield
