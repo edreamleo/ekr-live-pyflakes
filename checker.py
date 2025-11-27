@@ -539,7 +539,7 @@ class FunctionScope(Scope):
 
     @ivar globals: Names declared 'global' in this function.
     """
-    usesLocals = False
+    usesLocals = False  ### Set only by Name.
     alwaysUsed = {'__tracebackhide__', '__traceback_info__',
                   '__traceback_supplement__', '__debuggerskip__'}
 
@@ -581,8 +581,8 @@ class GeneratorScope(Scope):
 
 class ModuleScope(Scope):
     """Scope for a module."""
-    _futures_allowed = True
-    _annotations_future_enabled = False
+    _futures_allowed = True  ### Set False (via property) only by handleNode. 
+    _annotations_future_enabled = False  ### Set True (via property) only by IMPORTFROM
 
 
 class DoctestScope(ModuleScope):
