@@ -177,9 +177,10 @@
 <v t="ekr.20251125025721.131"><vh>Checker.ignore</vh></v>
 </v>
 <v t="ekr.20251125084540.1"><vh>Checker: visitors</vh>
-<v t="ekr.20251125025721.132"><vh>Checker.SUBSCRIPT</vh></v>
+<v t="ekr.20251127143733.1"><vh>Checker: ignored (Statements &amp; expr)</vh></v>
+<v t="ekr.20251125025721.132"><vh>Checker.SUBSCRIPT (handleNode...)</vh></v>
 <v t="ekr.20251125025721.133"><vh>Checker._handle_string_dot_format</vh></v>
-<v t="ekr.20251125025721.134"><vh>Checker.CALL</vh></v>
+<v t="ekr.20251125025721.134"><vh>Checker.CALL (annotated, not_annotated, omit)</vh></v>
 <v t="ekr.20251125025721.135"><vh>Checker._handle_percent_format</vh></v>
 <v t="ekr.20251125025721.136"><vh>Checker.BINOP</vh></v>
 <v t="ekr.20251125025721.137"><vh>Checker.CONSTANT</vh></v>
@@ -192,16 +193,16 @@
 <v t="ekr.20251125025721.143"><vh>Checker.ASSERT</vh></v>
 <v t="ekr.20251125025721.144"><vh>Checker.GLOBAL</vh></v>
 <v t="ekr.20251125025721.145"><vh>Checker.GENERATOREXP</vh></v>
-<v t="ekr.20251125025721.146"><vh>Checker.NAME</vh></v>
+<v t="ekr.20251125025721.146"><vh>Checker.NAME (handleNode...)</vh></v>
 <v t="ekr.20251125025721.147"><vh>Checker.CONTINUE</vh></v>
-<v t="ekr.20251125025721.148"><vh>Checker.RETURN</vh></v>
-<v t="ekr.20251125025721.149"><vh>Checker.YIELD</vh></v>
+<v t="ekr.20251125025721.148"><vh>Checker.RETURN (handleNode)</vh></v>
+<v t="ekr.20251125025721.149"><vh>Checker.YIELD (handleNode)</vh></v>
 <v t="ekr.20251125025721.150"><vh>Checker.FUNCTIONDEF</vh></v>
 <v t="ekr.20251125025721.151"><vh>Checker.LAMBDA</vh></v>
-<v t="ekr.20251125025721.152"><vh>Checker.ARGUMENTS</vh></v>
+<v t="ekr.20251125025721.152"><vh>Checker.ARGUMENTS (handleChildren)</vh></v>
 <v t="ekr.20251125025721.153"><vh>Checker.ARG</vh></v>
 <v t="ekr.20251125025721.154"><vh>Checker.CLASSDEF</vh></v>
-<v t="ekr.20251125025721.155"><vh>Checker.AUGASSIGN</vh></v>
+<v t="ekr.20251125025721.155"><vh>Checker.AUGASSIGN (handleNode/Load)</vh></v>
 <v t="ekr.20251125025721.156"><vh>Checker.TUPLE</vh></v>
 <v t="ekr.20251125025721.157"><vh>Checker.IMPORT</vh></v>
 <v t="ekr.20251125025721.158"><vh>Checker.IMPORTFROM</vh></v>
@@ -211,8 +212,8 @@
 <v t="ekr.20251125025721.162"><vh>Checker.COMPARE</vh></v>
 <v t="ekr.20251125025721.163"><vh>Checker._match_target</vh></v>
 <v t="ekr.20251125025721.164"><vh>Checker._type_param_scope</vh></v>
-<v t="ekr.20251125025721.165"><vh>Checker.TYPEVAR</vh></v>
-<v t="ekr.20251125025721.166"><vh>Checker.TYPEALIAS</vh></v>
+<v t="ekr.20251125025721.165"><vh>Checker.TYPEVAR (handle_annotation_always_deferred)</vh></v>
+<v t="ekr.20251125025721.166"><vh>Checker.TYPEALIAS (handle_annotation_always_deferred)</vh></v>
 </v>
 </v>
 </v>
@@ -1003,15 +1004,6 @@
 </v>
 </v>
 </v>
-<v t="ekr.20251127052742.1"><vh>--- classes</vh>
-<v t="ekr.20251125025721.60"></v>
-</v>
-<v t="ekr.20251125025721.14"></v>
-<v t="ekr.20251125030727.1"></v>
-<v t="ekr.20251127052946.1"><vh>--- ref</vh>
-<v t="ekr.20251125025721.146"></v>
-<v t="ekr.20251125025721.6"></v>
-</v>
 <v t="ekr.20251127053202.1"><vh>====== study</vh>
 <v t="ekr.20251125031033.1"></v>
 <v t="ekr.20251127055618.1"><vh>--- functools.partial: defer calls to handleStringAnnotation</vh>
@@ -1039,10 +1031,49 @@
 <v t="ekr.20251125025721.59"></v>
 </v>
 </v>
+<v t="ekr.20251127052742.1"><vh>--- classes</vh>
+<v t="ekr.20251125025721.60"></v>
+</v>
+<v t="ekr.20251125025721.14"></v>
+<v t="ekr.20251125030727.1"></v>
+<v t="ekr.20251127052946.1"><vh>--- ref</vh>
+<v t="ekr.20251125025721.146"></v>
+<v t="ekr.20251125025721.6"></v>
+<v t="ekr.20251125084540.1"></v>
+</v>
 <v t="ekr.20251125110241.1"><vh>@button test-pyflakes</vh>
 <v t="ekr.20251125112702.1"><vh>&lt;&lt; define test &gt;&gt;</vh></v>
 <v t="ekr.20251126060205.1"><vh>ATTRIBUTE</vh></v>
 <v t="ekr.20251127091133.1"><vh>repr_AnnotationState</vh></v>
+</v>
+<v t="ekr.20251125025721.60"></v>
+<v t="ekr.20251127143929.1"><vh>--- re: checking &amp; annotations</vh>
+<v t="ekr.20251125025721.161"></v>
+<v t="ekr.20251125025721.152"></v>
+<v t="ekr.20251125025721.155"></v>
+<v t="ekr.20251125025721.134"></v>
+<v t="ekr.20251125025721.154"></v>
+<v t="ekr.20251125025721.150"></v>
+<v t="ekr.20251125025721.144"></v>
+<v t="ekr.20251125025721.157"></v>
+<v t="ekr.20251125025721.158"></v>
+<v t="ekr.20251125025721.146"></v>
+<v t="ekr.20251125025721.148"></v>
+<v t="ekr.20251125025721.132"></v>
+<v t="ekr.20251125025721.166"></v>
+<v t="ekr.20251125025721.165"></v>
+<v t="ekr.20251125025721.149"></v>
+</v>
+<v t="ekr.20251127144625.1"><vh>git diff HEAD </vh>
+<v t="ekr.20251127144625.2"><vh>diff: checker.py</vh>
+<v t="ekr.20251127144625.329"><vh>diff: Changed</vh>
+<v t="ekr.20251127144625.330"><vh>diff: Checker.CALL (annotated, not_annotated, omit)</vh>
+<v t="ekr.20251127144625.331"><vh>Old:Checker.CALL (annotated, not_annotated, omit)</vh></v>
+<v t="ekr.20251125025721.134"></v>
+</v>
+</v>
+</v>
+<v t="ekr.20251127144625.332"><vh>diff: pyflakes.leo</vh></v>
 </v>
 </vnodes>
 <tnodes>
@@ -1963,10 +1994,10 @@ def handleAnnotation(self, annotation, node):
 </t>
 <t tx="ekr.20251125025721.134">def CALL(self, node):
     if (
-            isinstance(node.func, ast.Attribute) and
-            isinstance(node.func.value, ast.Constant) and
-            isinstance(node.func.value.value, str) and
-            node.func.attr == 'format'
+        isinstance(node.func, ast.Attribute) and
+        isinstance(node.func.value, ast.Constant) and
+        isinstance(node.func.value.value, str) and
+        node.func.attr == 'format'
     ):
         self._handle_string_dot_format(node)
 
@@ -2210,7 +2241,7 @@ def JOINEDSTR(self, node):
         self._in_fstring = orig
 
 </t>
-<t tx="ekr.20251125025721.14" _mod_time="4741da4a1abfd67d032e">"""
+<t tx="ekr.20251125025721.14" _mod_time="4741da4a2e275bb9512e">"""
 Main module.
 
 Implement the central Checker class.
@@ -11878,17 +11909,7 @@ del _customBuiltIns
 </t>
 <t tx="ekr.20251125084337.1"></t>
 <t tx="ekr.20251125084425.1"></t>
-<t tx="ekr.20251125084540.1"># "stmt" type nodes
-DELETE = FOR = ASYNCFOR = WHILE = WITH = WITHITEM = ASYNCWITH = \
-    EXPR = ASSIGN = handleChildren
-
-PASS = ignore
-
-# "expr" type nodes
-BOOLOP = UNARYOP = SET = ATTRIBUTE = STARRED = NAMECONSTANT = \
-    NAMEDEXPR = handleChildren
-
-</t>
+<t tx="ekr.20251125084540.1"></t>
 <t tx="ekr.20251125090403.1"></t>
 <t tx="ekr.20251125090459.1">@nosearch
 
@@ -12064,5 +12085,316 @@ To study:
 
 g.funcToMethod(repr_AnnotationState, Checker)</t>
 <t tx="ekr.20251127143301.1"></t>
+<t tx="ekr.20251127143733.1"># "stmt" type nodes
+DELETE = FOR = ASYNCFOR = WHILE = WITH = WITHITEM = ASYNCWITH = \
+    EXPR = ASSIGN = handleChildren
+
+PASS = ignore
+
+# "expr" type nodes
+BOOLOP = UNARYOP = SET = ATTRIBUTE = STARRED = NAMECONSTANT = \
+    NAMEDEXPR = handleChildren
+
+</t>
+<t tx="ekr.20251127143929.1"># Found 15 marked nodes</t>
+<t tx="ekr.20251127144625.1">@ignore
+@nosearch
+HEAD=61a3193</t>
+<t tx="ekr.20251127144625.2">@ignore
+@nosearch
+@language patch
+--- HEAD
++++ uncommitted
+@@ -1536,10 +1536,10 @@
+ 
+     def CALL(self, node):
+         if (
+-                isinstance(node.func, ast.Attribute) and
+-                isinstance(node.func.value, ast.Constant) and
+-                isinstance(node.func.value.value, str) and
+-                node.func.attr == 'format'
++            isinstance(node.func, ast.Attribute) and
++            isinstance(node.func.value, ast.Constant) and
++            isinstance(node.func.value.value, str) and
++            node.func.attr == 'format'
+         ):
+             self._handle_string_dot_format(node)
+@language python
+</t>
+<t tx="ekr.20251127144625.329"></t>
+<t tx="ekr.20251127144625.330">@ignore
+@nosearch
+@language patch
+--- HEAD
++++ uncommitted
+@@ -1,9 +1,9 @@
+ def CALL(self, node):
+     if (
+-            isinstance(node.func, ast.Attribute) and
+-            isinstance(node.func.value, ast.Constant) and
+-            isinstance(node.func.value.value, str) and
+-            node.func.attr == 'format'
++        isinstance(node.func, ast.Attribute) and
++        isinstance(node.func.value, ast.Constant) and
++        isinstance(node.func.value.value, str) and
++        node.func.attr == 'format'
+     ):
+         self._handle_string_dot_format(node)
+ 
+@language python
+</t>
+<t tx="ekr.20251127144625.331">def CALL(self, node):
+    if (
+            isinstance(node.func, ast.Attribute) and
+            isinstance(node.func.value, ast.Constant) and
+            isinstance(node.func.value.value, str) and
+            node.func.attr == 'format'
+    ):
+        self._handle_string_dot_format(node)
+
+    omit = []
+    annotated = []
+    not_annotated = []
+
+    if (
+        _is_typing(node.func, 'cast', self.scopeStack) and
+        len(node.args) &gt;= 1
+    ):
+        with self._enter_annotation():
+            self.handleNode(node.args[0], node)
+
+    elif _is_typing(node.func, 'TypeVar', self.scopeStack):
+
+        # TypeVar("T", "int", "str")
+        omit += ["args"]
+        annotated += [arg for arg in node.args[1:]]
+
+        # TypeVar("T", bound="str")
+        omit += ["keywords"]
+        annotated += [k.value for k in node.keywords if k.arg == "bound"]
+        not_annotated += [
+            (k, ["value"] if k.arg == "bound" else None)
+            for k in node.keywords
+        ]
+
+    elif _is_typing(node.func, "TypedDict", self.scopeStack):
+        # TypedDict("a", {"a": int})
+        if len(node.args) &gt; 1 and isinstance(node.args[1], ast.Dict):
+            omit += ["args"]
+            annotated += node.args[1].values
+            not_annotated += [
+                (arg, ["values"] if i == 1 else None)
+                for i, arg in enumerate(node.args)
+            ]
+
+        # TypedDict("a", a=int)
+        omit += ["keywords"]
+        annotated += [k.value for k in node.keywords]
+        not_annotated += [(k, ["value"]) for k in node.keywords]
+
+    elif _is_typing(node.func, "NamedTuple", self.scopeStack):
+        # NamedTuple("a", [("a", int)])
+        if (
+            len(node.args) &gt; 1 and
+            isinstance(node.args[1], (ast.Tuple, ast.List)) and
+            all(isinstance(x, (ast.Tuple, ast.List)) and
+                len(x.elts) == 2 for x in node.args[1].elts)
+        ):
+            omit += ["args"]
+            annotated += [elt.elts[1] for elt in node.args[1].elts]
+            not_annotated += [(elt.elts[0], None) for elt in node.args[1].elts]
+            not_annotated += [
+                (arg, ["elts"] if i == 1 else None)
+                for i, arg in enumerate(node.args)
+            ]
+            not_annotated += [(elt, "elts") for elt in node.args[1].elts]
+
+        # NamedTuple("a", a=int)
+        omit += ["keywords"]
+        annotated += [k.value for k in node.keywords]
+        not_annotated += [(k, ["value"]) for k in node.keywords]
+
+    if omit:
+        with self._enter_annotation(AnnotationState.NONE):
+            for na_node, na_omit in not_annotated:
+                self.handleChildren(na_node, omit=na_omit)
+            self.handleChildren(node, omit=omit)
+
+        with self._enter_annotation():
+            for annotated_node in annotated:
+                self.handleNode(annotated_node, node)
+    else:
+        self.handleChildren(node)
+
+</t>
+<t tx="ekr.20251127144625.332">@ignore
+@nosearch
+@language patch
+--- HEAD
++++ uncommitted
+@@ -177,9 +177,10 @@
+ &lt;v t="ekr.20251125025721.131"&gt;&lt;vh&gt;Checker.ignore&lt;/vh&gt;&lt;/v&gt;
+ &lt;/v&gt;
+ &lt;v t="ekr.20251125084540.1"&gt;&lt;vh&gt;Checker: visitors&lt;/vh&gt;
+-&lt;v t="ekr.20251125025721.132"&gt;&lt;vh&gt;Checker.SUBSCRIPT&lt;/vh&gt;&lt;/v&gt;
++&lt;v t="ekr.20251127143733.1"&gt;&lt;vh&gt;Checker: ignored (Statements &amp;amp; expr)&lt;/vh&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.132"&gt;&lt;vh&gt;Checker.SUBSCRIPT (handleNode...)&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251125025721.133"&gt;&lt;vh&gt;Checker._handle_string_dot_format&lt;/vh&gt;&lt;/v&gt;
+-&lt;v t="ekr.20251125025721.134"&gt;&lt;vh&gt;Checker.CALL&lt;/vh&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.134"&gt;&lt;vh&gt;Checker.CALL (annotated, not_annotated, omit)&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251125025721.135"&gt;&lt;vh&gt;Checker._handle_percent_format&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251125025721.136"&gt;&lt;vh&gt;Checker.BINOP&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251125025721.137"&gt;&lt;vh&gt;Checker.CONSTANT&lt;/vh&gt;&lt;/v&gt;
+@@ -192,16 +193,16 @@
+ &lt;v t="ekr.20251125025721.143"&gt;&lt;vh&gt;Checker.ASSERT&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251125025721.144"&gt;&lt;vh&gt;Checker.GLOBAL&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251125025721.145"&gt;&lt;vh&gt;Checker.GENERATOREXP&lt;/vh&gt;&lt;/v&gt;
+-&lt;v t="ekr.20251125025721.146"&gt;&lt;vh&gt;Checker.NAME&lt;/vh&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.146"&gt;&lt;vh&gt;Checker.NAME (handleNode...)&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251125025721.147"&gt;&lt;vh&gt;Checker.CONTINUE&lt;/vh&gt;&lt;/v&gt;
+-&lt;v t="ekr.20251125025721.148"&gt;&lt;vh&gt;Checker.RETURN&lt;/vh&gt;&lt;/v&gt;
+-&lt;v t="ekr.20251125025721.149"&gt;&lt;vh&gt;Checker.YIELD&lt;/vh&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.148"&gt;&lt;vh&gt;Checker.RETURN (handleNode)&lt;/vh&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.149"&gt;&lt;vh&gt;Checker.YIELD (handleNode)&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251125025721.150"&gt;&lt;vh&gt;Checker.FUNCTIONDEF&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251125025721.151"&gt;&lt;vh&gt;Checker.LAMBDA&lt;/vh&gt;&lt;/v&gt;
+-&lt;v t="ekr.20251125025721.152"&gt;&lt;vh&gt;Checker.ARGUMENTS&lt;/vh&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.152"&gt;&lt;vh&gt;Checker.ARGUMENTS (handleChildren)&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251125025721.153"&gt;&lt;vh&gt;Checker.ARG&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251125025721.154"&gt;&lt;vh&gt;Checker.CLASSDEF&lt;/vh&gt;&lt;/v&gt;
+-&lt;v t="ekr.20251125025721.155"&gt;&lt;vh&gt;Checker.AUGASSIGN&lt;/vh&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.155"&gt;&lt;vh&gt;Checker.AUGASSIGN (handleNode/Load)&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251125025721.156"&gt;&lt;vh&gt;Checker.TUPLE&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251125025721.157"&gt;&lt;vh&gt;Checker.IMPORT&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251125025721.158"&gt;&lt;vh&gt;Checker.IMPORTFROM&lt;/vh&gt;&lt;/v&gt;
+@@ -211,8 +212,8 @@
+ &lt;v t="ekr.20251125025721.162"&gt;&lt;vh&gt;Checker.COMPARE&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251125025721.163"&gt;&lt;vh&gt;Checker._match_target&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251125025721.164"&gt;&lt;vh&gt;Checker._type_param_scope&lt;/vh&gt;&lt;/v&gt;
+-&lt;v t="ekr.20251125025721.165"&gt;&lt;vh&gt;Checker.TYPEVAR&lt;/vh&gt;&lt;/v&gt;
+-&lt;v t="ekr.20251125025721.166"&gt;&lt;vh&gt;Checker.TYPEALIAS&lt;/vh&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.165"&gt;&lt;vh&gt;Checker.TYPEVAR (handle_annotation_always_deferred)&lt;/vh&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.166"&gt;&lt;vh&gt;Checker.TYPEALIAS (handle_annotation_always_deferred)&lt;/vh&gt;&lt;/v&gt;
+ &lt;/v&gt;
+ &lt;/v&gt;
+ &lt;/v&gt;
+@@ -1003,15 +1004,6 @@
+ &lt;/v&gt;
+ &lt;/v&gt;
+ &lt;/v&gt;
+-&lt;v t="ekr.20251127052742.1"&gt;&lt;vh&gt;--- classes&lt;/vh&gt;
+-&lt;v t="ekr.20251125025721.60"&gt;&lt;/v&gt;
+-&lt;/v&gt;
+-&lt;v t="ekr.20251125025721.14"&gt;&lt;/v&gt;
+-&lt;v t="ekr.20251125030727.1"&gt;&lt;/v&gt;
+-&lt;v t="ekr.20251127052946.1"&gt;&lt;vh&gt;--- ref&lt;/vh&gt;
+-&lt;v t="ekr.20251125025721.146"&gt;&lt;/v&gt;
+-&lt;v t="ekr.20251125025721.6"&gt;&lt;/v&gt;
+-&lt;/v&gt;
+ &lt;v t="ekr.20251127053202.1"&gt;&lt;vh&gt;====== study&lt;/vh&gt;
+ &lt;v t="ekr.20251125031033.1"&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251127055618.1"&gt;&lt;vh&gt;--- functools.partial: defer calls to handleStringAnnotation&lt;/vh&gt;
+@@ -1039,10 +1031,38 @@
+ &lt;v t="ekr.20251125025721.59"&gt;&lt;/v&gt;
+ &lt;/v&gt;
+ &lt;/v&gt;
++&lt;v t="ekr.20251127052742.1"&gt;&lt;vh&gt;--- classes&lt;/vh&gt;
++&lt;v t="ekr.20251125025721.60"&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t="ekr.20251125025721.14"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125030727.1"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251127052946.1"&gt;&lt;vh&gt;--- ref&lt;/vh&gt;
++&lt;v t="ekr.20251125025721.146"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.6"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125084540.1"&gt;&lt;/v&gt;
++&lt;/v&gt;
+ &lt;v t="ekr.20251125110241.1"&gt;&lt;vh&gt;@button test-pyflakes&lt;/vh&gt;
+ &lt;v t="ekr.20251125112702.1"&gt;&lt;vh&gt;&amp;lt;&amp;lt; define test &amp;gt;&amp;gt;&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251126060205.1"&gt;&lt;vh&gt;ATTRIBUTE&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t="ekr.20251127091133.1"&gt;&lt;vh&gt;repr_AnnotationState&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t="ekr.20251125025721.60"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251127143929.1"&gt;&lt;vh&gt;--- re: checking &amp;amp; annotations&lt;/vh&gt;
++&lt;v t="ekr.20251125025721.161"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.152"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.155"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.134"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.154"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.150"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.144"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.157"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.158"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.146"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.148"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.132"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.166"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.165"&gt;&lt;/v&gt;
++&lt;v t="ekr.20251125025721.149"&gt;&lt;/v&gt;
+ &lt;/v&gt;
+ &lt;/vnodes&gt;
+ &lt;tnodes&gt;
+@@ -1963,10 +1983,10 @@
+ &lt;/t&gt;
+ &lt;t tx="ekr.20251125025721.134"&gt;def CALL(self, node):
+     if (
+-            isinstance(node.func, ast.Attribute) and
+-            isinstance(node.func.value, ast.Constant) and
+-            isinstance(node.func.value.value, str) and
+-            node.func.attr == 'format'
++        isinstance(node.func, ast.Attribute) and
++        isinstance(node.func.value, ast.Constant) and
++        isinstance(node.func.value.value, str) and
++        node.func.attr == 'format'
+     ):
+         self._handle_string_dot_format(node)
+ 
+@@ -2210,7 +2230,7 @@
+         self._in_fstring = orig
+ 
+ &lt;/t&gt;
+-&lt;t tx="ekr.20251125025721.14" _mod_time="4741da4a1abfd67d032e"&gt;"""
++&lt;t tx="ekr.20251125025721.14" _mod_time="4741da4a2e275bb9512e"&gt;"""
+ Main module.
+ 
+ Implement the central Checker class.
+@@ -11878,17 +11898,7 @@
+ &lt;/t&gt;
+ &lt;t tx="ekr.20251125084337.1"&gt;&lt;/t&gt;
+ &lt;t tx="ekr.20251125084425.1"&gt;&lt;/t&gt;
+-&lt;t tx="ekr.20251125084540.1"&gt;# "stmt" type nodes
+-DELETE = FOR = ASYNCFOR = WHILE = WITH = WITHITEM = ASYNCWITH = \
+-    EXPR = ASSIGN = handleChildren
+-
+-PASS = ignore
+-
+-# "expr" type nodes
+-BOOLOP = UNARYOP = SET = ATTRIBUTE = STARRED = NAMECONSTANT = \
+-    NAMEDEXPR = handleChildren
+-
+-&lt;/t&gt;
++&lt;t tx="ekr.20251125084540.1"&gt;&lt;/t&gt;
+ &lt;t tx="ekr.20251125090403.1"&gt;&lt;/t&gt;
+ &lt;t tx="ekr.20251125090459.1"&gt;@nosearch
+ 
+@@ -12064,5 +12074,17 @@
+ 
+ g.funcToMethod(repr_AnnotationState, Checker)&lt;/t&gt;
+ &lt;t tx="ekr.20251127143301.1"&gt;&lt;/t&gt;
++&lt;t tx="ekr.20251127143733.1"&gt;# "stmt" type nodes
++DELETE = FOR = ASYNCFOR = WHILE = WITH = WITHITEM = ASYNCWITH = \
++    EXPR = ASSIGN = handleChildren
++
++PASS = ignore
++
++# "expr" type nodes
++BOOLOP = UNARYOP = SET = ATTRIBUTE = STARRED = NAMECONSTANT = \
++    NAMEDEXPR = handleChildren
++
++&lt;/t&gt;
++&lt;t tx="ekr.20251127143929.1"&gt;# Found 15 marked nodes&lt;/t&gt;
+ &lt;/tnodes&gt;
+ &lt;/leo_file&gt;
+@language python
+</t>
 </tnodes>
 </leo_file>
