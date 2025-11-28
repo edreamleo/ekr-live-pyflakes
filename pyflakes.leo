@@ -1042,11 +1042,6 @@
 <v t="ekr.20251125025721.6"></v>
 <v t="ekr.20251125084540.1"></v>
 </v>
-<v t="ekr.20251125110241.1"><vh>@button test-pyflakes</vh>
-<v t="ekr.20251125112702.1"><vh>&lt;&lt; define test &gt;&gt;</vh></v>
-<v t="ekr.20251126060205.1"><vh>ATTRIBUTE</vh></v>
-<v t="ekr.20251127091133.1"><vh>repr_AnnotationState</vh></v>
-</v>
 <v t="ekr.20251125025721.60"></v>
 <v t="ekr.20251127143929.1"><vh>--- re: checking &amp; annotations</vh>
 <v t="ekr.20251125025721.161"></v>
@@ -1103,6 +1098,13 @@
 <v t="ekr.20251125025721.117"></v>
 <v t="ekr.20251125025721.118"></v>
 <v t="ekr.20251125025721.158"></v>
+</v>
+<v t="ekr.20251125110241.1"><vh>@button test-pyflakes</vh>
+<v t="ekr.20251128113004.1"><vh>&lt;&lt; test-pyflakes: imports &gt;&gt;</vh></v>
+<v t="ekr.20251125112702.1"><vh>&lt;&lt; define test_s &gt;&gt;</vh></v>
+<v t="ekr.20251126060205.1"><vh>ATTRIBUTE</vh></v>
+<v t="ekr.20251127091133.1"><vh>repr_AnnotationState</vh></v>
+<v t="ekr.20251128112122.1"><vh>run</vh></v>
 </v>
 </vnodes>
 <tnodes>
@@ -11971,23 +11973,21 @@ AND = OR = ADD = SUB = MULT = DIV = MOD = POW = LSHIFT = RSHIFT = \
 g.cls()
 if c.changed:
     c.save()
-
-import ast
-import pyflakes
-from pyflakes.api import check
-from pyflakes.checker import Checker
-
-&lt;&lt; define test &gt;&gt;
+&lt;&lt; test-pyflakes: imports &gt;&gt;
+if 0:  # Test leoApp.py.
+    gTrace = False
+    filename = os.path.join(g.app.loadDir, 'leoApp.py')
+    test_s = g.readFile(os.path.join(g.app.loadDir, filename))
+else:
+    gTrace = True
+    filename = 'pyflakes_test.py'
+    &lt;&lt; define test_s &gt;&gt;
 @others
-try:
-    pyflakes.trace = True
-    check(test, filename='pyflakes_test.py')
-finally:
-    pyflakes.trace = False
+run(test_s, filename)
 </t>
 <t tx="ekr.20251125112702.1"># The #@ comments are markers for mypy.
 
-test = '''
+test_s = textwrap.dedent('''
 
 # pyflakes fails to find obvious errors.
 
@@ -12004,7 +12004,7 @@ def f(arg: Test) -&gt; int:
 val = f(test)
 print(val)
 
-'''</t>
+''')</t>
 <t tx="ekr.20251125115440.1"></t>
 <t tx="ekr.20251126052640.1">def load_plugins(self) -&gt; None:
     """Load all plugins"""
@@ -12137,5 +12137,23 @@ BOOLOP = UNARYOP = SET = ATTRIBUTE = STARRED = NAMECONSTANT = \
 
 # found 24 nodes</t>
 <t tx="ekr.20251128045508.1"># Found 7 marked nodes</t>
+<t tx="ekr.20251128112122.1">def run(test_s: str, filename: str) -&gt; None:
+    try:
+        pyflakes.trace = gTrace
+        t1 = time.process_time()
+        check(test_s, filename='pyflakes_test.py')
+        t2 = time.process_time()
+        print(f"{t2-t1:.2f} sec. {len(test_s)} {g.shortFileName(filename)}")
+    finally:
+        pyflakes.trace = False
+</t>
+<t tx="ekr.20251128113004.1">import ast
+import os
+import pyflakes
+import time
+import textwrap
+from pyflakes.api import check
+from pyflakes.checker import Checker
+</t>
 </tnodes>
 </leo_file>
