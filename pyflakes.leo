@@ -1106,6 +1106,8 @@
 <v t="ekr.20251127091133.1"><vh>repr_AnnotationState</vh></v>
 <v t="ekr.20251128112122.1"><vh>run</vh></v>
 </v>
+<v t="ekr.20251128113004.1"></v>
+<v t="ekr.20251128112122.1"></v>
 </vnodes>
 <tnodes>
 <t tx="ekr.20251125025221.1"></t>
@@ -2276,7 +2278,7 @@ def JOINEDSTR(self, node):
         self._in_fstring = orig
 
 </t>
-<t tx="ekr.20251125025721.14" _mod_time="4741da4a2e888750e02e">"""
+<t tx="ekr.20251125025721.14" _mod_time="4741da4a89523625942e">"""
 Main module.
 
 Implement the central Checker class.
@@ -2296,7 +2298,6 @@ import string
 import sys
 import warnings
 
-from pyflakes import trace  ###
 from pyflakes import messages
 
 PYPY = hasattr(sys, 'pypy_version_info')
@@ -4044,9 +4045,7 @@ from pyflakes.test.harness import TestCase, skipIf
             [('unexpectedError', 'extremo', 'No such file or directory')])
 
 </t>
-<t tx="ekr.20251125025721.3" _mod_time="4741da4a19ab266c0a2e">__version__ = '3.4.0'
-# True only when running the test-pyflakes script.
-trace = False
+<t tx="ekr.20251125025721.3" _mod_time="4741da4a8968f347742e">__version__ = '3.4.0'
 @language python
 @tabwidth -4
 </t>
@@ -12034,7 +12033,7 @@ print(val)
 <t tx="ekr.20251126055911.1"></t>
 <t tx="ekr.20251126060205.1">def ATTRIBUTE(self, node) -&gt; None:
     if isinstance(node.value, ast.Name):
-        if pyflakes.trace:
+        if self.trace:
             a = self._in_annotation
             g.trace(
                 f"{self.repr_AnnotationState(a)}"
@@ -12139,19 +12138,20 @@ BOOLOP = UNARYOP = SET = ATTRIBUTE = STARRED = NAMECONSTANT = \
 <t tx="ekr.20251128045508.1"># Found 7 marked nodes</t>
 <t tx="ekr.20251128112122.1">def run(test_s: str, filename: str) -&gt; None:
     try:
-        pyflakes.trace = gTrace
+        Checker.trace = gTrace
         t1 = time.process_time()
         check(test_s, filename='pyflakes_test.py')
         t2 = time.process_time()
         print(f"{t2-t1:.2f} sec. {len(test_s)} {g.shortFileName(filename)}")
     finally:
-        pyflakes.trace = False
+        delattr(Checker, 'trace')
 </t>
 <t tx="ekr.20251128113004.1">import ast
 import os
 import pyflakes
 import time
 import textwrap
+import pyflakes
 from pyflakes.api import check
 from pyflakes.checker import Checker
 </t>

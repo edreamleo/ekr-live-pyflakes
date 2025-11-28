@@ -18,7 +18,6 @@ import string
 import sys
 import warnings
 
-from pyflakes import trace  ###
 from pyflakes import messages
 
 PYPY = hasattr(sys, 'pypy_version_info')
