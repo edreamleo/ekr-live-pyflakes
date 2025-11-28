@@ -125,7 +125,7 @@
 <v t="ekr.20251125025721.51"><vh>class DetectClassScopedMagic(Scope)</vh></v>
 <v t="ekr.20251125025721.52"><vh>function: getNodeName</vh></v>
 </v>
-<v t="ekr.20251125030727.1"><vh>--- Annotations</vh>
+<v t="ekr.20251125030727.1"><vh>--- re: annotations</vh>
 <v t="ekr.20251125025721.53"><vh>function: _is_typing_helper</vh></v>
 <v t="ekr.20251125025721.54"><vh>function: _is_typing</vh></v>
 <v t="ekr.20251125025721.55"><vh>function: _is_any_typing_member</vh></v>
@@ -1033,17 +1033,10 @@
 <v t="ekr.20251125025721.59"></v>
 </v>
 </v>
-<v t="ekr.20251127052742.1"><vh>--- classes</vh>
-<v t="ekr.20251125025721.60"></v>
-</v>
-<v t="ekr.20251125030727.1"></v>
-<v t="ekr.20251127052946.1"><vh>--- ref</vh>
-<v t="ekr.20251125025721.146"></v>
-<v t="ekr.20251125025721.6"></v>
-<v t="ekr.20251125084540.1"></v>
-</v>
-<v t="ekr.20251125025721.60"></v>
 <v t="ekr.20251127143929.1"><vh>--- re: checking &amp; annotations</vh>
+<v t="ekr.20251125025721.60"></v>
+<v t="ekr.20251125030727.1"></v>
+<v t="ekr.20251128164659.1"><vh>--- important visitors</vh>
 <v t="ekr.20251125025721.161"></v>
 <v t="ekr.20251125025721.152"></v>
 <v t="ekr.20251125025721.155"></v>
@@ -1060,10 +1053,6 @@
 <v t="ekr.20251125025721.165"></v>
 <v t="ekr.20251125025721.149"></v>
 </v>
-<v t="ekr.20251125025721.134"></v>
-<v t="ekr.20251125025721.126"></v>
-<v t="ekr.20251125025721.14"></v>
-<v t="ekr.20251125025721.60"></v>
 <v t="ekr.20251128044938.1"><vh>--- 24 calls:self.report</vh>
 <v t="ekr.20251125025721.135"></v>
 <v t="ekr.20251125025721.133"></v>
@@ -1099,15 +1088,17 @@
 <v t="ekr.20251125025721.118"></v>
 <v t="ekr.20251125025721.158"></v>
 </v>
+</v>
 <v t="ekr.20251125110241.1"><vh>@button test-pyflakes</vh>
 <v t="ekr.20251128113004.1"><vh>&lt;&lt; test-pyflakes: imports &gt;&gt;</vh></v>
+<v t="ekr.20251128165910.1"><vh>&lt;&lt; define leo test_s &gt;&gt;</vh></v>
 <v t="ekr.20251125112702.1"><vh>&lt;&lt; define test_s &gt;&gt;</vh></v>
 <v t="ekr.20251126060205.1"><vh>ATTRIBUTE</vh></v>
 <v t="ekr.20251127091133.1"><vh>repr_AnnotationState</vh></v>
 <v t="ekr.20251128112122.1"><vh>run</vh></v>
 </v>
 <v t="ekr.20251128113004.1"></v>
-<v t="ekr.20251128112122.1"></v>
+<v t="ekr.20251126060205.1"></v>
 </vnodes>
 <tnodes>
 <t tx="ekr.20251125025221.1"></t>
@@ -11973,14 +11964,18 @@ g.cls()
 if c.changed:
     c.save()
 &lt;&lt; test-pyflakes: imports &gt;&gt;
-if 0:  # Test leoApp.py.
+leoC, leoG, leoP = c, g, p
+if 1:  # Test leoApp.py.
     gTrace = False
     filename = os.path.join(g.app.loadDir, 'leoApp.py')
     test_s = g.readFile(os.path.join(g.app.loadDir, filename))
 else:
     gTrace = True
     filename = 'pyflakes_test.py'
-    &lt;&lt; define test_s &gt;&gt;
+    if 1:
+        &lt;&lt; define leo test_s &gt;&gt;
+    else:
+        &lt;&lt; define test_s &gt;&gt;
 @others
 run(test_s, filename)
 </t>
@@ -12032,17 +12027,26 @@ print(val)
 <t tx="ekr.20251126054455.1"></t>
 <t tx="ekr.20251126055911.1"></t>
 <t tx="ekr.20251126060205.1">def ATTRIBUTE(self, node) -&gt; None:
+
     if isinstance(node.value, ast.Name):
-        if self.trace:
-            a = self._in_annotation
-            g.trace(
-                f"{self.repr_AnnotationState(a)}"
-                f"{node.ctx.__class__.__name__} "
-                f"{node.value.id}.{node.attr} "
-            )
+        base = node.value.id
+        attr = node.attr
+        table = (
+            (leoC, ('c', 'c1', 'c2')),
+            (leoG, ('g', 'leoGlobals')),
+            (leoP, ('p', 'p1', 'p2')),
+        )
+        for obj, bases in table:
+            if base in bases and not hasattr(obj, attr):
+                # g.trace(f"{node.ctx.__class__.__name__} {base}.{attr}")
+                    # f"{self.repr_AnnotationState(self._in_annotation)}"
+                # g.trace(repr(base), attr, g.callers())
+                self.report(messages.UndefinedName, node, f"{base}.{attr}")
+                return  # Otherwise pyflakes reports both base and attr as changed.
+
     self.handleChildren(node)
 
-g.funcToMethod(ATTRIBUTE, Checker)  #, 'ATTRIBUTE')
+g.funcToMethod(ATTRIBUTE, Checker)
 </t>
 <t tx="ekr.20251126114704.1">"""A plugin for pyflakes that improves testing of ast.ATTRIBUTE nodes."""
 
@@ -12086,8 +12090,6 @@ import os
     # Patch pyflakes.ATTRIBUTE.
     funcToMethod(patched_ATTRIBUTE, pyflakes.__class__, 'ATTRIBUTE')
 </t>
-<t tx="ekr.20251127052742.1"></t>
-<t tx="ekr.20251127052946.1"></t>
 <t tx="ekr.20251127053202.1">@nosearch
 @language rest
 
@@ -12152,8 +12154,22 @@ import pyflakes
 import time
 import textwrap
 import pyflakes
+from pyflakes import messages
 from pyflakes.api import check
 from pyflakes.checker import Checker
+# from leo.core import leoGlobals
+# from leo.core.leoCommands import Commands
+# from leo.core.leoNodes import Position
 </t>
+<t tx="ekr.20251128164659.1"></t>
+<t tx="ekr.20251128165910.1"># The #@ comments are markers for mypy.
+
+test_s = textwrap.dedent('''
+
+print(g.gxxx)
+print(p.pxxx)
+print(c.cxxx)
+
+''')</t>
 </tnodes>
 </leo_file>
