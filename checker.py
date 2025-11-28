@@ -1543,6 +1543,10 @@ class Checker:
         ):
             self._handle_string_dot_format(node)
 
+        ###
+        # Do non-trivial processing only only if omit is True.
+        # with self._enter_annotation(...):
+
         omit = []
         annotated = []
         not_annotated = []
