@@ -4,6 +4,8 @@ See [Leo issue #4472](https://github.com/leo-editor/leo-editor/issues/4472)
 
 This work will remain local to Leo for now.
 
+Here is the flattened version of `@button test-pyflakes`
+
 ```python
 ===== @button test-pyflakes
 
@@ -108,9 +110,6 @@ def ATTRIBUTE(self, node) -> None:
         )
         for obj, bases in table:
             if base in bases and not hasattr(obj, attr):
-                # g.trace(f"{node.ctx.__class__.__name__} {base}.{attr}")
-                    # f"{self.repr_AnnotationState(self._in_annotation)}"
-                # g.trace(repr(base), attr, g.callers())
                 self.report(messages.UndefinedName, node, f"{base}.{attr}")
                 return  # Otherwise pyflakes reports both base and attr as changed.
 
@@ -137,4 +136,22 @@ def run(test_s: str, filename: str) -> None:
         print(f"{t2-t1:.2f} sec. {len(test_s)} {g.shortFileName(filename)}")
     finally:
         delattr(Checker, 'trace')'
+```
+And here is the Leonine script that flattened the script above:
+```python
+# @button flatten-script
+h = '@button test-pyflakes'
+root = g.findNodeAnywhere(c, h)
+assert h
+aList = []
+for p in root.self_and_subtree():
+    if p.b.strip():
+        aList.append(f"===== {p.h}\n\n")
+        aList.append(f"{p.b.strip()}'\n\n")
+last = c.lastTopLevel()
+p = last.insertAfter()
+p.h = f"Flattened {h}"
+p.b = ''.join(aList).strip().replace('>>', '> >').replace('<<', '< <') + '\n'
+c.selectPosition(p)
+c.redraw()
 ```
