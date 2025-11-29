@@ -14,11 +14,14 @@ g.cls()
 if c.changed:
     c.save()
 < < test-pyflakes: imports > >
-# Create dummy live objects.
-# leoC, leoG, leoP = c, g, p
+big = True
+< < set test_s > >
 leoC, leoG, leoP = create_live_objects()
+run(test_s, filename)'
 
-if 1:  # Test leoApp.py.
+===== < < set test_s > >
+
+if big:  # Test leoApp.py.
     gTrace = False
     filename = os.path.join(g.app.loadDir, 'leoApp.py')
     test_s = g.readFile(os.path.join(g.app.loadDir, filename))
@@ -28,20 +31,7 @@ else:
     if 1:
         < < define leo test_s > >
     else:
-        < < define test_s > >
-run(test_s, filename)'
-
-===== < < test-pyflakes: imports > >
-
-import ast
-import os
-import pyflakes
-import time
-import textwrap
-import pyflakes
-from pyflakes import messages
-from pyflakes.api import check
-from pyflakes.checker import Checker'
+        < < define test_s > >'
 
 ===== < < define leo test_s > >
 
@@ -77,6 +67,18 @@ val = f(test)
 print(val)
 
 ''')'
+
+===== < < test-pyflakes: imports > >
+
+import ast
+import os
+import pyflakes
+import time
+import textwrap
+import pyflakes
+from pyflakes import messages
+from pyflakes.api import check
+from pyflakes.checker import Checker'
 
 ===== create_live_objects
 
@@ -136,6 +138,7 @@ def run(test_s: str, filename: str) -> None:
         print(f"{t2-t1:.2f} sec. {len(test_s)} {g.shortFileName(filename)}")
     finally:
         delattr(Checker, 'trace')'
+
 ```
 And here is the Leonine script that flattened the script above:
 ```python
