@@ -5,6 +5,7 @@ See [Leo issue #4472](https://github.com/leo-editor/leo-editor/issues/4472)
 This work will remain local to Leo for now.
 
 ```python
+===== @button test-pyflakes
 
 """A test of a simple failure"""
 g.cls()
@@ -26,10 +27,9 @@ else:
         < < define leo test_s > >
     else:
         < < define test_s > >
-run(test_s, filename)
+run(test_s, filename)'
 
-
-===== # < < test-pyflakes: imports > >
+===== < < test-pyflakes: imports > >
 
 import ast
 import os
@@ -39,9 +39,9 @@ import textwrap
 import pyflakes
 from pyflakes import messages
 from pyflakes.api import check
-from pyflakes.checker import Checker
+from pyflakes.checker import Checker'
 
-===== # < < define leo test_s > >
+===== < < define leo test_s > >
 
 # The #@ comments are markers for mypy.
 
@@ -51,9 +51,9 @@ print(g.gxxx)
 print(p.pxxx)
 print(c.cxxx)
 
-''')
+''')'
 
-===== # < < define test_s > >
+===== < < define test_s > >
 
 # The #@ comments are markers for mypy.
 
@@ -74,9 +74,9 @@ def f(arg: Test) -> int:
 val = f(test)
 print(val)
 
-''')
+''')'
 
-===== # create_live_objects
+===== create_live_objects
 
 def create_live_objects():
     from leo.core.leoCommands import Commands
@@ -92,9 +92,9 @@ def create_live_objects():
     # Create p and p.v
     v = VNode(c)
     p = Position(v)
-    return c, g, p
+    return c, g, p'
 
-===== # ATTRIBUTE
+===== ATTRIBUTE
 
 def ATTRIBUTE(self, node) -> None:
 
@@ -108,22 +108,25 @@ def ATTRIBUTE(self, node) -> None:
         )
         for obj, bases in table:
             if base in bases and not hasattr(obj, attr):
+                # g.trace(f"{node.ctx.__class__.__name__} {base}.{attr}")
+                    # f"{self.repr_AnnotationState(self._in_annotation)}"
+                # g.trace(repr(base), attr, g.callers())
                 self.report(messages.UndefinedName, node, f"{base}.{attr}")
                 return  # Otherwise pyflakes reports both base and attr as changed.
 
     self.handleChildren(node)
 
-g.funcToMethod(ATTRIBUTE, Checker)
+g.funcToMethod(ATTRIBUTE, Checker)'
 
-===== # repr_AnnotationState
+===== repr_AnnotationState
 
 def repr_AnnotationState(self, a: int) -> str:
     s = 'none' if self == 0 else 'string' if self == 1 else 'bare'
     return f"AnnotationState: {s}"
 
-g.funcToMethod(repr_AnnotationState, Checker)
+g.funcToMethod(repr_AnnotationState, Checker)'
 
-===== # run
+===== run
 
 def run(test_s: str, filename: str) -> None:
     try:
@@ -133,6 +136,5 @@ def run(test_s: str, filename: str) -> None:
         t2 = time.process_time()
         print(f"{t2-t1:.2f} sec. {len(test_s)} {g.shortFileName(filename)}")
     finally:
-        delattr(Checker, 'trace')
-
+        delattr(Checker, 'trace')'
 ```

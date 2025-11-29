@@ -1069,7 +1069,8 @@
 <v t="ekr.20251128112122.1"><vh>run</vh></v>
 </v>
 <v t="ekr.20251129025641.1"><vh>To do</vh></v>
-<v t="ekr.20251129032322.1"><vh>Flattened test-pyflakes</vh></v>
+<v t="ekr.20251129033244.1"><vh>@button flatten-script</vh></v>
+<v t="ekr.20251129034930.1"><vh>Flattened @button test-pyflakes</vh></v>
 </vnodes>
 <tnodes>
 <t tx="ekr.20251125025221.1"></t>
@@ -12158,143 +12159,14 @@ Problems with script:
     p = Position(v)
     return c, g, p
    </t>
-<t tx="ekr.20251129032322.1">"""A test of a simple failure"""
-g.cls()
-if c.changed:
-    c.save()
-&lt; &lt; test-pyflakes: imports &gt; &gt;
-@others
-# Create dummy live objects.
-# leoC, leoG, leoP = c, g, p
-leoC, leoG, leoP = create_live_objects()
-
-if 1:  # Test leoApp.py.
-    gTrace = False
-    filename = os.path.join(g.app.loadDir, 'leoApp.py')
-    test_s = g.readFile(os.path.join(g.app.loadDir, filename))
-else:
-    gTrace = True
-    filename = 'pyflakes_test.py'
-    if 1:
-        &lt; &lt; define leo test_s &gt; &gt;
-    else:
-        &lt; &lt; define test_s &gt; &gt;
-run(test_s, filename)
-
-
-===== # &lt; &lt; test-pyflakes: imports &gt; &gt;
-
-import ast
-import os
-import pyflakes
-import time
-import textwrap
-import pyflakes
-from pyflakes import messages
-from pyflakes.api import check
-from pyflakes.checker import Checker
-
-===== # &lt;&lt; define leo test_s &gt;&gt;
-
-# The #@ comments are markers for mypy.
-
-test_s = textwrap.dedent('''
-
-print(g.gxxx)
-print(p.pxxx)
-print(c.cxxx)
-
-''')
-
-===== # &lt; &lt; define test_s &gt; &gt;
-
-# The #@ comments are markers for mypy.
-
-test_s = textwrap.dedent('''
-
-# pyflakes fails to find obvious errors.
-
-class Test:
-    a: int = 666
-
-test = Test()
-
-print(test.b)  # Wrong.
-
-def f(arg: Test) -&gt; int:
-    return arg.b  # Wrong.
-
-val = f(test)
-print(val)
-
-''')
-
-===== # create_live_objects
-
-def create_live_objects():
-    from leo.core.leoCommands import Commands
-    from leo.core.leoGui import NullGui
-    from leo.core.leoNodes import Position, VNode
-    # Create c.
-    try:
-        old_gui = g.app.gui
-        g.app.gui = NullGui()
-        c = Commands(fileName='dummy')
-    finally:
-        g.app.gui = old_gui
-    # Create p and p.v
-    v = VNode(c)
-    p = Position(v)
-    return c, g, p
-
-===== # ATTRIBUTE
-
-def ATTRIBUTE(self, node) -&gt; None:
-
-    if isinstance(node.value, ast.Name):
-        base = node.value.id
-        attr = node.attr
-        table = (
-            (leoC, ('c', 'c1', 'c2')),
-            (leoG, ('g', 'leoGlobals')),
-            (leoP, ('p', 'p1', 'p2')),
-        )
-        for obj, bases in table:
-            if base in bases and not hasattr(obj, attr):
-                self.report(messages.UndefinedName, node, f"{base}.{attr}")
-                return  # Otherwise pyflakes reports both base and attr as changed.
-
-    self.handleChildren(node)
-
-g.funcToMethod(ATTRIBUTE, Checker)
-
-===== # repr_AnnotationState
-
-def repr_AnnotationState(self, a: int) -&gt; str:
-    s = 'none' if self == 0 else 'string' if self == 1 else 'bare'
-    return f"AnnotationState: {s}"
-
-g.funcToMethod(repr_AnnotationState, Checker)
-
-===== # run
-
-def run(test_s: str, filename: str) -&gt; None:
-    try:
-        Checker.trace = gTrace
-        t1 = time.process_time()
-        check(test_s, filename='pyflakes_test.py')
-        t2 = time.process_time()
-        print(f"{t2-t1:.2f} sec. {len(test_s)} {g.shortFileName(filename)}")
-    finally:
-        delattr(Checker, 'trace')
-</t>
-<t tx="ekr.20251129032901.1" _mod_time="4741da4aaf568ce4a62e">This repo contains my experiments adding global checking checking to pyflakes.
+<t tx="ekr.20251129032901.1" _mod_time="4741da4ab071345acd2e">This repo contains my experiments adding global checking checking to pyflakes.
 
 See [Leo issue #4472](https://github.com/leo-editor/leo-editor/issues/4472)
 
 This work will remain local to Leo for now.
 
 ```python
+===== @button test-pyflakes
 
 """A test of a simple failure"""
 g.cls()
@@ -12317,10 +12189,9 @@ else:
         &lt; &lt; define leo test_s &gt; &gt;
     else:
         &lt; &lt; define test_s &gt; &gt;
-run(test_s, filename)
+run(test_s, filename)'
 
-
-===== # &lt; &lt; test-pyflakes: imports &gt; &gt;
+===== &lt; &lt; test-pyflakes: imports &gt; &gt;
 
 import ast
 import os
@@ -12330,9 +12201,9 @@ import textwrap
 import pyflakes
 from pyflakes import messages
 from pyflakes.api import check
-from pyflakes.checker import Checker
+from pyflakes.checker import Checker'
 
-===== # &lt; &lt; define leo test_s &gt; &gt;
+===== &lt; &lt; define leo test_s &gt; &gt;
 
 # The #@ comments are markers for mypy.
 
@@ -12342,9 +12213,9 @@ print(g.gxxx)
 print(p.pxxx)
 print(c.cxxx)
 
-''')
+''')'
 
-===== # &lt; &lt; define test_s &gt; &gt;
+===== &lt; &lt; define test_s &gt; &gt;
 
 # The #@ comments are markers for mypy.
 
@@ -12365,9 +12236,9 @@ def f(arg: Test) -&gt; int:
 val = f(test)
 print(val)
 
-''')
+''')'
 
-===== # create_live_objects
+===== create_live_objects
 
 def create_live_objects():
     from leo.core.leoCommands import Commands
@@ -12383,9 +12254,9 @@ def create_live_objects():
     # Create p and p.v
     v = VNode(c)
     p = Position(v)
-    return c, g, p
+    return c, g, p'
 
-===== # ATTRIBUTE
+===== ATTRIBUTE
 
 def ATTRIBUTE(self, node) -&gt; None:
 
@@ -12399,22 +12270,25 @@ def ATTRIBUTE(self, node) -&gt; None:
         )
         for obj, bases in table:
             if base in bases and not hasattr(obj, attr):
+                # g.trace(f"{node.ctx.__class__.__name__} {base}.{attr}")
+                    # f"{self.repr_AnnotationState(self._in_annotation)}"
+                # g.trace(repr(base), attr, g.callers())
                 self.report(messages.UndefinedName, node, f"{base}.{attr}")
                 return  # Otherwise pyflakes reports both base and attr as changed.
 
     self.handleChildren(node)
 
-g.funcToMethod(ATTRIBUTE, Checker)
+g.funcToMethod(ATTRIBUTE, Checker)'
 
-===== # repr_AnnotationState
+===== repr_AnnotationState
 
 def repr_AnnotationState(self, a: int) -&gt; str:
     s = 'none' if self == 0 else 'string' if self == 1 else 'bare'
     return f"AnnotationState: {s}"
 
-g.funcToMethod(repr_AnnotationState, Checker)
+g.funcToMethod(repr_AnnotationState, Checker)'
 
-===== # run
+===== run
 
 def run(test_s: str, filename: str) -&gt; None:
     try:
@@ -12424,8 +12298,156 @@ def run(test_s: str, filename: str) -&gt; None:
         t2 = time.process_time()
         print(f"{t2-t1:.2f} sec. {len(test_s)} {g.shortFileName(filename)}")
     finally:
-        delattr(Checker, 'trace')
-
+        delattr(Checker, 'trace')'
 ```</t>
+<t tx="ekr.20251129033244.1">h = '@button test-pyflakes'
+root = g.findNodeAnywhere(c, h)
+assert h
+aList = []
+for p in root.self_and_subtree():
+    if p.b.strip():
+        aList.append(f"===== {p.h}\n\n")
+        aList.append(f"{p.b.strip()}'\n\n")
+last = c.lastTopLevel()
+p = last.insertAfter()
+p.h = f"Flattened {h}"
+p.b = ''.join(aList).strip().replace('&gt;&gt;', '&gt; &gt;').replace('&lt;&lt;', '&lt; &lt;') + '\n'
+c.selectPosition(p)
+c.redraw()
+</t>
+<t tx="ekr.20251129034930.1">===== @button test-pyflakes
+
+"""A test of a simple failure"""
+g.cls()
+if c.changed:
+    c.save()
+&lt; &lt; test-pyflakes: imports &gt; &gt;
+@others
+# Create dummy live objects.
+# leoC, leoG, leoP = c, g, p
+leoC, leoG, leoP = create_live_objects()
+
+if 1:  # Test leoApp.py.
+    gTrace = False
+    filename = os.path.join(g.app.loadDir, 'leoApp.py')
+    test_s = g.readFile(os.path.join(g.app.loadDir, filename))
+else:
+    gTrace = True
+    filename = 'pyflakes_test.py'
+    if 1:
+        &lt; &lt; define leo test_s &gt; &gt;
+    else:
+        &lt; &lt; define test_s &gt; &gt;
+run(test_s, filename)'
+
+===== &lt; &lt; test-pyflakes: imports &gt; &gt;
+
+import ast
+import os
+import pyflakes
+import time
+import textwrap
+import pyflakes
+from pyflakes import messages
+from pyflakes.api import check
+from pyflakes.checker import Checker'
+
+===== &lt; &lt; define leo test_s &gt; &gt;
+
+# The #@ comments are markers for mypy.
+
+test_s = textwrap.dedent('''
+
+print(g.gxxx)
+print(p.pxxx)
+print(c.cxxx)
+
+''')'
+
+===== &lt; &lt; define test_s &gt; &gt;
+
+# The #@ comments are markers for mypy.
+
+test_s = textwrap.dedent('''
+
+# pyflakes fails to find obvious errors.
+
+class Test:
+    a: int = 666
+
+test = Test()
+
+print(test.b)  # Wrong.
+
+def f(arg: Test) -&gt; int:
+    return arg.b  # Wrong.
+
+val = f(test)
+print(val)
+
+''')'
+
+===== create_live_objects
+
+def create_live_objects():
+    from leo.core.leoCommands import Commands
+    from leo.core.leoGui import NullGui
+    from leo.core.leoNodes import Position, VNode
+    # Create c.
+    try:
+        old_gui = g.app.gui
+        g.app.gui = NullGui()
+        c = Commands(fileName='dummy')
+    finally:
+        g.app.gui = old_gui
+    # Create p and p.v
+    v = VNode(c)
+    p = Position(v)
+    return c, g, p'
+
+===== ATTRIBUTE
+
+def ATTRIBUTE(self, node) -&gt; None:
+
+    if isinstance(node.value, ast.Name):
+        base = node.value.id
+        attr = node.attr
+        table = (
+            (leoC, ('c', 'c1', 'c2')),
+            (leoG, ('g', 'leoGlobals')),
+            (leoP, ('p', 'p1', 'p2')),
+        )
+        for obj, bases in table:
+            if base in bases and not hasattr(obj, attr):
+                # g.trace(f"{node.ctx.__class__.__name__} {base}.{attr}")
+                    # f"{self.repr_AnnotationState(self._in_annotation)}"
+                # g.trace(repr(base), attr, g.callers())
+                self.report(messages.UndefinedName, node, f"{base}.{attr}")
+                return  # Otherwise pyflakes reports both base and attr as changed.
+
+    self.handleChildren(node)
+
+g.funcToMethod(ATTRIBUTE, Checker)'
+
+===== repr_AnnotationState
+
+def repr_AnnotationState(self, a: int) -&gt; str:
+    s = 'none' if self == 0 else 'string' if self == 1 else 'bare'
+    return f"AnnotationState: {s}"
+
+g.funcToMethod(repr_AnnotationState, Checker)'
+
+===== run
+
+def run(test_s: str, filename: str) -&gt; None:
+    try:
+        Checker.trace = gTrace
+        t1 = time.process_time()
+        check(test_s, filename='pyflakes_test.py')
+        t2 = time.process_time()
+        print(f"{t2-t1:.2f} sec. {len(test_s)} {g.shortFileName(filename)}")
+    finally:
+        delattr(Checker, 'trace')'
+</t>
 </tnodes>
 </leo_file>
